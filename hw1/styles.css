@@ -146,6 +146,36 @@ input[type="checkbox"] {
 	text-decoration: line-through;
 }
 
+#list li button {
+	display: none;
+	position: absolute;
+	top: 0;
+	right: 10px;
+	bottom: 0;
+	width: 40px;
+	height: 40px;
+	margin: auto 0;
+	font-size: 30px;
+	color: #cc9a9a;
+	margin-bottom: 11px;
+	transition: color 0.2s ease-out;
+}
+
+#list li button:hover {
+	color: #af5b5e;
+}
+
+#list li button:after {
+	/*content: '×';*/
+	content: 'x';
+}
+
+#list li:hover button {
+	display: block;
+}
+
+#list li button
+
 #count {
 	loat: left;
 	text-align: left;

@@ -12,7 +12,9 @@ function newItem() {
 	if(event.keyCode != 13) return;
 	var item = document.createElement('li');
 	item.innerHTML = 
-	'<div><input type="checkbox"></input><label>' + input.value + '</label></div>';
+	'<div><input type="checkbox"></input>' + 
+	'<label>' + input.value + '</label>' +
+	'<button></button></div>';
 	input.value = '';
 	item.childNodes[0].childNodes[0].onclick = function () {
 		var label  = item.childNodes[0].childNodes[1];
@@ -25,6 +27,9 @@ function newItem() {
 			++num;
 		}
 		updateCount();
+	};
+	item.childNodes[0].childNodes[2].onclick = function () {
+		list.removeChild(event.target.parentElement.parentElement);
 	};
 	list.appendChild(item);
 	++ num;
