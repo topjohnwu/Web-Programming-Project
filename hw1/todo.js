@@ -68,6 +68,10 @@ function toggle(target) {
 }
 
 function toggleAll() {
+	if(list.childElementCount === 0) {
+		toggle_all.checked = false;
+		return;
+	}
 	var i;
 	var full = true;
 	for(i = 0; i < array.length; ++i) {
