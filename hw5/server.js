@@ -17,6 +17,10 @@ router.get('/', function(req, res, next) {
     next();
 });
 
+router.get('/api/query', function(req, res, next){
+    res.json(req.query);
+    next();
+});
 
 app.use('/', router);
 
