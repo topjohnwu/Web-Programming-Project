@@ -11,6 +11,8 @@ nunjucks.configure('views', {
     autoescape: true,
     express: app
 });
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 router.get('/', function(req, res, next) {
     res.render('index', { title: 'Express' });
@@ -20,6 +22,10 @@ router.get('/', function(req, res, next) {
 router.get('/api/query', function(req, res, next){
     res.json(req.query);
     next();
+});
+
+router.post('/api/body', function(req, res) {
+  res.json(req.body);
 });
 
 app.use('/', router);
