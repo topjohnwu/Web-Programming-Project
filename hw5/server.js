@@ -40,6 +40,8 @@ router.get('/api/user/:id', function(req, res, next){
     }
 });
 
+router.use('/static', express.static('public'));
+
 app.use('/', router);
 
 app.listen(3000);
