@@ -30,7 +30,7 @@ router.get('/api/query', function(req, res, next){
 });
 
 router.post('/api/body', function(req, res, next) {
-  res.json(req.body);
+    res.json(req.body);
 });
 
 router.get('/api/user/:id', function(req, res, next){
