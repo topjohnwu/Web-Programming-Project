@@ -1,0 +1,8 @@
+.self a {
+	color: black;
+	font-size: 23px;
+}
+
+.self a:hover {
+	text-decoration: underline;
+}
