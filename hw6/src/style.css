@@ -27,7 +27,7 @@ a:hover {
         width: calc(35% - 1px);
         height: inherit;
         border-right: 1px solid grey;
-        overflow: auto;
+        
     }
     .chat-app_message {
         float: left;
@@ -42,7 +42,6 @@ a:hover {
         height: calc(35% - 1px);
         width: inherit;
         border-bottom: 1px solid grey;
-        overflow: auto;
     }
     .chat-app_message {
         float: bottom;
@@ -62,7 +61,10 @@ a:hover {
     margin: 0;
 }
 
-.thread-list {}
+.thread-list {
+	height: calc(100% - 60px);
+	overflow: auto;
+}
 
 .thread-item {
     position: relative;
