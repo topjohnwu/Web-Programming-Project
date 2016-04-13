@@ -17,6 +17,7 @@ class ChatApp extends React.Component {
 						["...........", false],
 					],
 					time: "11:20pm",
+					input: "",
 				}, {
 					id: 1,
 					name: "蔣介石",
@@ -28,6 +29,7 @@ class ChatApp extends React.Component {
 						["...........?!", true],
 					],
 					time: "2:24pm",
+					input: "",
 				}, {
 					id: 2,
 					name: "蔣經國",
@@ -39,6 +41,7 @@ class ChatApp extends React.Component {
 						["呵呵呵", true],
 					],
 					time: "6:18pm",
+					input: "",
 				}, {
 					id: 3,
 					name: "李登輝",
@@ -51,6 +54,7 @@ class ChatApp extends React.Component {
 						["日本人可以當台灣總統？", true],
 					],
 					time: "4:13am",
+					input: "",
 				}, {
 					id: 4,
 					name: "陳水扁",
@@ -64,6 +68,7 @@ class ChatApp extends React.Component {
 						["........你錯了....", true],
 					],
 					time: "12:04am",
+					input: "",
 				}, {
 					id: 5,
 					name: "馬英九",
@@ -76,12 +81,52 @@ class ChatApp extends React.Component {
 						["你說什麼？", false],
 					],
 					time: "3:21pm",
+					input: "",
 				},
-
 			],
 			current: 0,
+			idList: [0, 1, 2, 3, 4, 5],
 		}
+		this.scroll = false;
 	}
+
+	/* Mapping functions */
+
+	mapContact(id) {
+		return <ThreadItem key={id} contact={this.state.contacts[id]} onClick={this.setContact(id)}/>;
+	}
+
+	mapContent(content, index) {
+		return <MessageItem key={index} text={content[0]} self={content[1]} />;
+	}
+
+	/* Function Generators */
+
+	setContact(key) {
+		function set() {
+			let input = document.getElementById('input');
+			input.value = "";
+			this.setState({ current: key });
+		}
+		return set.bind(this);
+	}
+
+	/* Events */
+
+	input(event) {
+		if (event.keyCode !== 13) return;
+		if (event.target.value === "") return;
+		this.state.contacts[this.state.current].contents.push([event.target.value, true]);
+		this.state.contacts[this.state.current].time = this.getTime();
+		event.target.value = "";
+		this.state.idList.splice(this.state.idList.indexOf(this.state.current), 1);
+		this.state.idList.unshift(this.state.current);
+		this.setState({ idList: this.state.idList });
+		this.scroll = true;
+	}
+
+
+	/* Helper functions */
 
 	getTime() {
 		let d = new Date(),
@@ -92,27 +137,15 @@ class ChatApp extends React.Component {
 			(hour < 12 ? "am" : "pm");
 	}
 
-	setContact(key) {
-		function set() {
-			this.setState({ current: key });
+	componentDidUpdate() {
+		if(this.scroll){
+			let list = document.getElementById('message-list');
+			list.scrollTop = list.scrollHeight;
+			this.scroll = false;
 		}
-		return set.bind(this);
 	}
 
-	mapContact(contact) {
-		return <ThreadItem key={contact.id} contact={contact} onClick={this.setContact(contact.id)}/>
-	}
-
-	input(event) {
-		if (event.keyCode !== 13) return;
-		if (event.target.value === "") return;
-		this.state.contacts[this.state.current].contents.push([event.target.value, true]);
-		this.state.contacts[this.state.current].time = this.getTime();
-		event.target.value = "";
-		this.setState({ contacts: this.state.contacts });
-		let list = document.getElementById('message-list');
-		list.scrollTop = list.scrollHeight ;
-	}
+	/* Render */
 
 	render() {
 		let i = 0;
@@ -123,7 +156,7 @@ class ChatApp extends React.Component {
 						<h3 className="messenger-title">中華民國總統會談</h3>
 					</div>
 					<div className="thread-list">
-						{this.state.contacts.map(this.mapContact.bind(this))}
+						{this.state.idList.map(this.mapContact.bind(this))}
 					</div>
 				</div>
 				<div className="chat-app_message">
@@ -133,16 +166,10 @@ class ChatApp extends React.Component {
 						</div>
 					</div>
 					<div className="message-list" id="message-list">
-						{
-							this.state.contacts[this.state.current].contents.map(
-								function(content) {
-									return <MessageItem key={i++} text={content[0]} self={content[1]} />;
-								}
-							)
-						}
+						{this.state.contacts[this.state.current].contents.map(this.mapContent.bind(this))}
 					</div>
 					<div className="footer">
-						<input className="new-message" type="text" onKeyDown={this.input.bind(this)}/>
+						<input className="new-message" id="input" type="text" onKeyDown={this.input.bind(this)}/>
 					</div>
 				</div>
 			</div>

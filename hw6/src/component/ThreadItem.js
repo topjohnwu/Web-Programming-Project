@@ -14,7 +14,7 @@ class ThreadItem extends React.Component {
 							<div className="thread-from">{name}</div>
 							<div>
 								<span className="thread-content">
-								{contents.slice(-1)[0][0]}
+									{contents.slice(-1)[0][0]}
 								</span>
 							</div>
 							<span className="thread-time">{time}</span>
