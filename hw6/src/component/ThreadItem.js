@@ -2,7 +2,7 @@ import React from 'react';
 
 class ThreadItem extends React.Component {
 	render() {
-		const {id, name, pic, contents, time} = this.props.contact;
+		const {name, pic, contents, time} = this.props.contact;
 		return (
 			<li className="thread-item" onClick={this.props.onClick}>
 				<a className="_1ht5 _5l-3">

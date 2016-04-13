@@ -7,7 +7,6 @@ class ChatApp extends React.Component {
 		super(props);
 		this.state = {
 			contacts: [{
-					id: 0,
 					name: "蔡英文",
 					pic: "image/tsai.png",
 					contents: [
@@ -17,9 +16,7 @@ class ChatApp extends React.Component {
 						["...........", false],
 					],
 					time: "11:20pm",
-					input: "",
 				}, {
-					id: 1,
 					name: "蔣介石",
 					pic: "image/chiang1.jpg",
 					contents: [
@@ -29,9 +26,7 @@ class ChatApp extends React.Component {
 						["...........?!", true],
 					],
 					time: "2:24pm",
-					input: "",
 				}, {
-					id: 2,
 					name: "蔣經國",
 					pic: "image/chiang2.jpg",
 					contents: [
@@ -41,9 +36,7 @@ class ChatApp extends React.Component {
 						["呵呵呵", true],
 					],
 					time: "6:18pm",
-					input: "",
 				}, {
-					id: 3,
 					name: "李登輝",
 					pic: "image/lee.jpg",
 					contents: [
@@ -54,9 +47,7 @@ class ChatApp extends React.Component {
 						["日本人可以當台灣總統？", true],
 					],
 					time: "4:13am",
-					input: "",
 				}, {
-					id: 4,
 					name: "陳水扁",
 					pic: "image/chen.jpg",
 					contents: [
@@ -68,9 +59,7 @@ class ChatApp extends React.Component {
 						["........你錯了....", true],
 					],
 					time: "12:04am",
-					input: "",
 				}, {
-					id: 5,
 					name: "馬英九",
 					pic: "image/ma.png",
 					contents: [
@@ -81,7 +70,6 @@ class ChatApp extends React.Component {
 						["你說什麼？", false],
 					],
 					time: "3:21pm",
-					input: "",
 				},
 			],
 			current: 0,
@@ -139,8 +127,10 @@ class ChatApp extends React.Component {
 
 	componentDidUpdate() {
 		if(this.scroll){
-			let list = document.getElementById('message-list');
-			list.scrollTop = list.scrollHeight;
+			let mList = document.getElementById('message-list');
+			let tList = document.getElementById('thread-list');
+			mList.scrollTop = mList.scrollHeight;
+			tList.scrollTop = 0;
 			this.scroll = false;
 		}
 	}
@@ -155,7 +145,7 @@ class ChatApp extends React.Component {
 					<div className="heading">
 						<h3 className="messenger-title">中華民國總統會談</h3>
 					</div>
-					<div className="thread-list">
+					<div className="thread-list" id="thread-list">
 						{this.state.idList.map(this.mapContact.bind(this))}
 					</div>
 				</div>
