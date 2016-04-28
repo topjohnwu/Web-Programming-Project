@@ -1,77 +1,13 @@
 import React from 'react';
 import ThreadItem from './ThreadItem'
 import MessageItem from './MessageItem'
+import UserData from './UserData'
 
 export default class ChatApp extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			contacts: [{
-					name: "蔡英文",
-					pic: "http://i.imgur.com/tSfIYtw.png",
-					contents: [
-						["誒誒你知道你的貼圖現在很夯嗎XD", true],
-						["什麼鬼= =", false],
-						[<img className="attach" src="http://i.imgur.com/n8MgSNB.jpg"/>, true],
-						["...........", false],
-					],
-					time: "11:20pm",
-				}, {
-					name: "蔣介石",
-					pic: "http://i.imgur.com/eb1dwwf.jpg",
-					contents: [
-						["漢賊不兩立！", false],
-						["...?", true],
-						["退出聯合國！", false],
-						["...........?!", true],
-					],
-					time: "2:24pm",
-				}, {
-					name: "蔣經國",
-					pic: "http://i.imgur.com/4ROT3HG.jpg",
-					contents: [
-						["快快快！十大建設！", false],
-						["好好好", true],
-						["讚讚讚！解嚴囉！", false],
-						["呵呵呵", true],
-					],
-					time: "6:18pm",
-				}, {
-					name: "李登輝",
-					pic: "http://i.imgur.com/6QapKnL.jpg",
-					contents: [
-						["這麼晚了你怎麼還不睡？", true],
-						["我是第一任民選總統，啊你現在是想怎樣", false],
-						["...沒啊，關心你而已啊= =兇啥", true],
-						["爺可是日本皇民，休想污辱我", false],
-						["日本人可以當台灣總統？", true],
-					],
-					time: "4:13am",
-				}, {
-					name: "陳水扁",
-					pic: "http://i.imgur.com/YcMPPxS.jpg",
-					contents: [
-						["阿扁錯了嗎？", false],
-						["誒...你要我怎麼回答", true],
-						["阿扁錯了嗎？", false],
-						["不要跳針好嗎= =", true],
-						["難道阿扁錯了嗎？", false],
-						["........你錯了....", true],
-					],
-					time: "12:04am",
-				}, {
-					name: "馬英九",
-					pic: "http://i.imgur.com/jJ3bYTi.png",
-					contents: [
-						["一個總統，施政滿意度只剩18%就可以下台了，不下台就是沒有羞恥心！", false],
-						["嗯...可是你只有9%誒", true],
-						["你說什麼？我聽不到", false],
-						["你耳朵長毛嗎？", true],
-						["你說什麼？", false],
-					],
-					time: "3:21pm",
-				},
-			],
+			contacts: UserData,
 			current: 0,
 			idList: [0, 1, 2, 3, 4, 5],
 		}
@@ -81,7 +17,7 @@ export default class ChatApp extends React.Component {
 	/* Mapping functions */
 
 	mapContact(id) {
-		return <ThreadItem key={id} contact={this.state.contacts[id]} onClick={this.setContact(id)}/>;
+		return <ThreadItem key={id} id={id} contact={this.state.contacts[id]} onClick={this.setContact(id)}/>;
 	}
 
 	mapContent(content, index) {

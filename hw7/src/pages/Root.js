@@ -8,7 +8,7 @@ export default class Root extends React.Component {
 	render() {
 		return (
 			<div>
-		    	<Link to="/app">Go To Chat app</Link>
+		    	<Link to="/chat">Go To Chat app</Link>
 		    </div>
 		);
 	}
