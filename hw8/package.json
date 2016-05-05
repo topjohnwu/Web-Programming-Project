@@ -14,7 +14,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "babel-polyfill": "^6.8.0",
     "express": "^4.13.4",
+    "isomorphic-fetch": "^2.2.1",
     "morgan": "^1.7.0",
     "react": "^15.0.2",
     "react-dom": "^15.0.2",
