@@ -3,10 +3,13 @@ const router = new Router();
 const {Users, Posts} = require('../src/Data');
 
 
-router.get('/users/'), function(req, res, next) {
+router.get('/users/', function(req, res) {
+  console.log(Users);
   res.json(Users);
-}
+});
+
 router.get('/users/:id', function(req, res, next) {
+  console.log(Users);
   if(req.params.id < 0 || req.params.id > Users.length) {
     var err = new Error();
     err.status = 404;
@@ -16,7 +19,7 @@ router.get('/users/:id', function(req, res, next) {
   else res.json(Users[req.params.id - 1]);
 });
 
-router.get('/posts/', function(req, res, next) {
+router.get('/posts/', function(req, res) {
   res.json(Posts);
 });
 

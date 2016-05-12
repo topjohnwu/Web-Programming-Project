@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import 'babel-polyfill';
 import fetch from 'isomorphic-fetch';
+import NotFoundPage from './NotFoundPage';
 
 import '../styles/UserStat.css'
 

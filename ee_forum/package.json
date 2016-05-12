@@ -15,6 +15,7 @@
   "license": "ISC",
   "dependencies": {
     "babel-polyfill": "^6.8.0",
+    "classnames": "^2.2.5",
     "express": "^4.13.4",
     "isomorphic-fetch": "^2.2.1",
     "morgan": "^1.7.0",
