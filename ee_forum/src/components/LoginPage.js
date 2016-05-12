@@ -30,7 +30,6 @@ export default class LoginPage extends Component {
     this.setState( {valid: false} );
   }
   setUsers(json) {
-    console.log(json);
     this.setState( {users: json} );
   }
   componentDidMount() {

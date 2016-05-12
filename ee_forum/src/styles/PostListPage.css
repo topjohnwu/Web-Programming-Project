@@ -16,11 +16,40 @@
   list-style-type: none;
   padding: 0;
 }
-.postList li{
+.postList li {
   border-style: solid;
   border-color: #C7C7C7;
   border-width: 2px;
   margin: 20px;
   background-color: #ADADAD;
   padding: 10px;
+}
+.post_header {
+  height: 30px;
+}
+.post_title {
+  font-size: 25px;
+  font-weight: bold;
+  float: left;
+}
+.post_votes {
+  font-size: 15px;
+  float: left;
+  margin-left: 20px;
+}
+.post_time {
+  font-size: 15px;
+  float: right;
+  margin-right: 20px;
+}
+.poster {
+  font-size: 15px;
+}
+.post_content {
+  margin: 10px;
+}
+.post_buttons {
+}
+.post_buttons button {
+  margin: 5px;
 }
