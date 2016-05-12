@@ -1,0 +1,53 @@
+.status{
+  height: 60px;
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.img-circle {
+  border-radius: 50%;
+  height: 55px;
+  margin: auto;
+  box-sizing: border-box;
+  float: left;
+}
+.username{
+  float: left;
+  margin: 0 10px;
+}
+.logout {
+  display: block;
+  width: 75px;
+  float: left;
+  margin: 0 30px; 
+  background-color: #9D94FF;
+  color: white;
+  border: none;
+}
+.left_nav {
+  width: 150px;
+  height: calc(100vh - 60px);
+  float: left;
+  background-color: #DEDEDE;
+  border-style: solid;
+  border-color: #C7C7C7;
+  border-width: 2px;
+}
+.left_nav ul {
+  margin: 0;
+  list-style-type: none;
+  padding: 0;
+}
+.left_nav li {
+  height: 50px;
+  border-style: solid;
+  border-color: #C7C7C7;
+  border-width: 0px 0px 2px 0px;
+}
+.main{
+  width: calc(100% - 150px);
+  height: calc(100vh - 60px);
+  float: right;
+  overflow: auto
+}

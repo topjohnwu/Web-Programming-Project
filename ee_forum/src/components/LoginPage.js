@@ -4,20 +4,21 @@ import 'babel-polyfill';
 import '../styles/LoginPage.css'
 
 export default class LoginPage extends Component {
+  login(event) {
+    let username = document.getElementById('username');
+    let password = document.getElementById('password');
+  }
   render() {
     return(
       <div>
-        <div className="topHeader">
-          <div className="slogan">NTUEESA</div>
-        </div>
         <div className="logo">EE Forum</div>
         <div className="inputs">
-          <input placeholder="Username"></input><br/>
-          <input placeholder="Password"></input>
+          <input placeholder="Username" id="username"></input><br/>
+          <input placeholder="Password" id="password"></input>
           <div className="chk">
             <label className="chktxt"><input className="chkbox" type="checkbox"/>Remember?</label>
           </div>
-          <div className="loginbtn"><button>Login</button></div>
+          <button>Login</button>
         </div>
       </div>
     )
