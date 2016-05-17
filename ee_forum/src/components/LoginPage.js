@@ -6,10 +6,10 @@ import classNames from 'classnames'
 import '../styles/LoginPage.css'
 
 export default class LoginPage extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      users: [],
+      users: null,
       valid: true,
     }
   }
@@ -17,13 +17,14 @@ export default class LoginPage extends Component {
     router: React.PropTypes.object.isRequired
   };
   login(event) {
-    let users = this.state.users;
+    const users = this.state.users;
     let username = document.getElementById('username');
     let password = document.getElementById('password');
     for(let i = 0; i < users.length; ++i) {
       if(users[i].name === username.value) {
         if(users[i].password === password.value) {
-          this.context.router.push(`/user/${users[i].id}`)
+          this.props.setUser(users[i]);
+          //this.context.router.push(`/user/${users[i].id}`)
         }
       }
     }
@@ -37,12 +38,11 @@ export default class LoginPage extends Component {
     .then(function(res) {
       return res.json();
     })
-    .then(this.setUsers.bind(this))
-    .catch(function(err) {
-      console.log(err);
-    });
+    .then(this.setUsers.bind(this));
   }
   render() {
+    const users = this.state.users;
+    if(users === null) return null;
     return(
       <div>
         <div className="logo">EE Forum</div>

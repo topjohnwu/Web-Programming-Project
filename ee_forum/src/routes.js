@@ -10,14 +10,20 @@ import UserStat from './components/UserStat';
 
 export default (
   <Route path="/" component={Header}>
-    <IndexRedirect to="/login" />
-    <Route path="login" component={LoginPage} />
+    {/*<IndexRedirect to="/login" />*/}
+    <Route component={UserStat}>
+      <IndexRoute component={PostListPage}/>
+      <Route path="user">
+        <Route path=":userid" component={UserInfoPage} />
+      </Route>
+    </Route>
+    {/*<Route path="login" component={LoginPage} />
     <Route path="user">
       <Route path=":userid" component={UserStat}>
         <IndexRoute component={PostListPage}/>
         <Route path="detail" component={UserInfoPage}/>
       </Route>
-    </Route>
+    </Route>*/}
     <Route path="*" component={NotFoundPage} />
   </Route>
 );

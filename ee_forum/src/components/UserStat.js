@@ -8,9 +8,6 @@ import '../styles/UserStat.css'
 export default class UserStat extends Component {
   constructor(props, context) {
     super(props, context);
-    this.state = {
-      user: null,
-    };
   }
   static propTypes = {
     children: PropTypes.any.isRequired
@@ -19,29 +16,15 @@ export default class UserStat extends Component {
     router: React.PropTypes.object.isRequired
   };
 
-  setUser(json) {
-    this.setState( {user: json} );
-  }
-
-  componentDidMount() {
-    fetch(`/api/users/${this.props.params.userid}`)
-    .then(function(res) {
-      return res.json();
-    })
-    .then(this.setUser.bind(this))
-    .catch(function(err) {
-      console.log(err);
-    });
-  }
-
-
   render() {
-    const user = this.state.user;
+    const user = this.props.user;
     if(user === null) return null;
     return (
       <div>
         <div className="status">
-          <img className="img-circle v_center" src={user.pic} />
+          <img className="img-circle v_center" src={user.pic} onClick={
+            () => {this.context.router.push(`/user/${user.id}`)}
+          }/>
           <div className="username v_center">{user.name}</div>
           <button className="logout v_center">Logout</button>
         </div>

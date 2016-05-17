@@ -3,7 +3,7 @@ import 'babel-polyfill';
 
 export default class UserInfo extends Component {
 	render() {
-		console.log(this.props.params.username);
+		console.log(this.props.params.userid);
 		return <div>Detail</div>
 	}
 }

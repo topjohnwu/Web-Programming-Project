@@ -9,10 +9,13 @@ export default class PostListPage extends Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
-      posts: [],
-      users: [],
+      posts: null,
+      users: null,
     };
   }
+  static contextTypes = {
+    router: React.PropTypes.object.isRequired
+  };
 
   setPosts(json) {
     this.setState( {posts: json} );
@@ -29,7 +32,12 @@ export default class PostListPage extends Component {
           <div className="post_votes">{'▲' + post.up + '/▼' + post.down}</div>
           <div className="post_time">{post.time}</div>
         </div>
-        <div className={classNames('poster', {'anonymous': !(post.op)})}>
+        <div className={classNames('poster', {'anonymous': !(post.op)})}
+              onClick={
+                post.op ?
+                () => {this.context.router.push(`/user/${post.op}`)}
+                : null
+              }>
           {'By: ' + (post.op ? this.state.users[post.op].name : post.anony)}
         </div>
         <div className="post_content">{post.content}</div>
@@ -47,21 +55,17 @@ export default class PostListPage extends Component {
       .then(function(res) {
         return res.json();
       })
-      .then(this.setPosts.bind(this))
-      .catch(function(err) {
-        console.log(err);
-      });
+      .then(this.setPosts.bind(this));
     fetch('/api/users')
       .then(function(res) {
         return res.json();
       })
-      .then(this.setUsers.bind(this))
-      .catch(function(err) {
-        console.log(err);
-      });
+      .then(this.setUsers.bind(this));
   }
 
   render() {
+    const users = this.state.users, posts = this.state.posts;
+    if(users === null || posts === null) return null;
     return (
       <div className="post_wrapper">
         <button className="newPost">+</button>
