@@ -1,9 +1,16 @@
 import React, { Component } from 'react';
 import 'babel-polyfill';
 
-export default class UserInfo extends Component {
+import '../styles/UserInfoPage.css'
+
+export default class UserInfoPage extends Component {
 	render() {
-		console.log(this.props.params.userid);
-		return <div>Detail</div>
+		const user = this.props.users[this.props.params.userid];
+		return (
+			<div>
+				<img className="info-img" src={user.pic}/>
+				<div className="info-name">{user.name}</div>
+			</div>
+		)
 	}
 }

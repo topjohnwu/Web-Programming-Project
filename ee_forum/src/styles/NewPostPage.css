@@ -1,0 +1,14 @@
+.post-inputs * {
+  display: block;
+  width: 70%;
+  margin: 20px auto;
+}
+
+#post-title {
+  font-size: 40px;
+  font-weight: bold;
+}
+
+#post-content {
+  height: 70vh;
+}

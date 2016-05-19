@@ -1,17 +1,17 @@
-.newPost {
-  position: fixed;
+.float-button {
+  position: absolute;
   right: 0;
   top: 60px;
-  background-color: red;
-  width: 40px;
-  height: 40px;
+  background-color: #00b359;
+  width: 50px;
+  height: 50px;
   border-radius: 30%;
-  margin: 40px;
+  margin: 75px;
 }
 .postList {
   position: relative;
   display: block;
-  margin: 120px auto 0 auto;
+  margin: 75px auto 0 auto;
   width: 70%;
   list-style-type: none;
   padding: 0;
@@ -34,21 +34,24 @@
 }
 .post_votes {
   font-size: 15px;
-  float: left;
-  margin-left: 20px;
+  float: right;
+  margin-right: 20px;
 }
 .post_time {
   font-size: 15px;
   float: right;
   margin-right: 20px;
 }
-.poster {
+.op {
   font-size: 15px;
+  cursor: pointer;
+}
+.op:hover {
+  text-decoration: underline;
 }
 .post_content {
   margin: 10px;
-}
-.post_buttons {
+  white-space: pre;
 }
 .post_buttons button {
   margin: 5px;

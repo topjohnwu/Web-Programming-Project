@@ -16,6 +16,16 @@ export default class UserStat extends Component {
     router: React.PropTypes.object.isRequired
   };
 
+  Child() {
+    const children = React.Children.map(this.props.children,
+         (child) => React.cloneElement(child, {
+           user: this.props.user,
+           users: this.props.users,
+         })
+        );
+    return children;
+  }
+
   render() {
     const user = this.props.user;
     if(user === null) return null;
@@ -26,19 +36,21 @@ export default class UserStat extends Component {
             () => {this.context.router.push(`/user/${user.id}`)}
           }/>
           <div className="username v_center">{user.name}</div>
-          <button className="logout v_center">Logout</button>
+          <button className="logout v_center" 
+            onClick={ () => { this.props.setUser(null); this.context.router.push('/login'); } }>
+            Logout</button>
         </div>
         <div className="left_nav">
           <ul>
-            <li>Hottest</li>
-            <li>Latest</li>
+            <li>Placeholder</li>
+            <li>Placeholder</li>
             <li>Placeholder</li>
             <li>Placeholder</li>
             <li>Placeholder</li>
             <li>Placeholder</li>
           </ul>
         </div>
-        <div className="main">{this.props.children}</div>
+        <div className="main">{this.Child()}</div>
       </div>
     )
   }

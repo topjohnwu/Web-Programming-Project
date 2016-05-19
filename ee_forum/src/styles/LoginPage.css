@@ -22,7 +22,7 @@
 .inputs input{
   width: 100%;
   margin: 10px 0;
-  background-color: #9D94FF;
+  /*background-color: #9D94FF;*/
 }
 .chk{
   width: 141px;
@@ -39,22 +39,4 @@
   background-color: #9D94FF;
   color: white;
   border: none;
-}
-
-
-
-*::-webkit-input-placeholder {
-  color: white;
-}
-*:-moz-placeholder {
-  /* FF 4-18 */
-  color: white;
-}
-*::-moz-placeholder {
-  /* FF 19+ */
-  color: white;
-}
-*:-ms-input-placeholder {
-  /* IE 10+ */
-  color: white;
 }

@@ -22,8 +22,13 @@ body{
   height: 60px;
 }
 .slogan{
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
   color: gray;
   padding: 0 40px;
   font-size: 30px;
   font-weight: bold;
+  cursor: pointer;
+  display: inline-block;
 }

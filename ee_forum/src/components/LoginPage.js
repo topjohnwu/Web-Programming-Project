@@ -6,10 +6,9 @@ import classNames from 'classnames'
 import '../styles/LoginPage.css'
 
 export default class LoginPage extends Component {
-  constructor(props) {
-    super(props);
+  constructor(props, context) {
+    super(props, context);
     this.state = {
-      users: null,
       valid: true,
     }
   }
@@ -17,39 +16,36 @@ export default class LoginPage extends Component {
     router: React.PropTypes.object.isRequired
   };
   login(event) {
-    const users = this.state.users;
-    let username = document.getElementById('username');
-    let password = document.getElementById('password');
-    for(let i = 0; i < users.length; ++i) {
-      if(users[i].name === username.value) {
-        if(users[i].password === password.value) {
-          this.props.setUser(users[i]);
-          //this.context.router.push(`/user/${users[i].id}`)
-        }
-      }
-    }
-    this.setState( {valid: false} );
-  }
-  setUsers(json) {
-    this.setState( {users: json} );
-  }
-  componentDidMount() {
-    fetch('/api/users')
-    .then(function(res) {
-      return res.json();
+    fetch('/api/login', {
+      method: 'post',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        username: document.getElementById('username').value,
+        password: document.getElementById('password').value,
+      }),
     })
-    .then(this.setUsers.bind(this));
+      .then(res => { return res.json(); } )
+      .then(json => { 
+        if(json) {
+          this.props.setUser(json);
+          this.context.router.push('/');
+        }
+        else
+          this.setState( {valid: false} );
+      })
   }
+
   render() {
-    const users = this.state.users;
-    if(users === null) return null;
     return(
       <div>
         <div className="logo">EE Forum</div>
         <div className="inputs">
           <div className={classNames('error', {hidden: this.state.valid})}>Wrong password or account!</div>
           <input placeholder="Username" id="username"></input><br/>
-          <input placeholder="Password" id="password"></input>
+          <input placeholder="Password" id="password" type="password"></input>
           <div className="chk">
             <label className="chktxt"><input className="chkbox" type="checkbox"/>Remember?</label>
           </div>

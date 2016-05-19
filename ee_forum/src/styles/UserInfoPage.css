@@ -1,0 +1,12 @@
+.info-img {
+	display: block;
+  border-radius: 50%;
+  height: 200px;
+  width: 200px;
+  margin: 50px auto;
+  box-sizing: border-box;
+}
+.info-name {
+	text-align: center;
+	font-size: 50px;
+}

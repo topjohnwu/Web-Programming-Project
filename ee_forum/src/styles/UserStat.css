@@ -11,6 +11,7 @@
   margin: auto;
   box-sizing: border-box;
   float: left;
+  cursor: pointer;
 }
 .username{
   float: left;

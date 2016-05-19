@@ -10,7 +10,6 @@ export default class PostListPage extends Component {
     super(props, context);
     this.state = {
       posts: null,
-      users: null,
     };
   }
   static contextTypes = {
@@ -20,8 +19,15 @@ export default class PostListPage extends Component {
   setPosts(json) {
     this.setState( {posts: json} );
   }
-  setUsers(json) {
-    this.setState( {users: json} );
+
+  printTime(millisec) {
+    let a = "";
+    let d = new Date(millisec);
+    let c = new Date();
+    if(d.toDateString() !== c.toDateString()) a += (d.toDateString() + ' ');
+    else a += ('Today ');
+    a += d.toTimeString().substr(0, 8);
+    return a;
   }
 
   mapPost(post) {
@@ -29,17 +35,14 @@ export default class PostListPage extends Component {
       <li key={post.id}>
         <div className="post_header">
           <div className="post_title">{post.title}</div>
+          <div className="post_time">{this.printTime(post.time)}</div>
           <div className="post_votes">{'▲' + post.up + '/▼' + post.down}</div>
-          <div className="post_time">{post.time}</div>
         </div>
-        <div className={classNames('poster', {'anonymous': !(post.op)})}
-              onClick={
-                post.op ?
-                () => {this.context.router.push(`/user/${post.op}`)}
-                : null
-              }>
-          {'By: ' + (post.op ? this.state.users[post.op].name : post.anony)}
-        </div>
+        <a 
+          className="op"
+          onClick={ () => {this.context.router.push(`/user/${post.op}`)} }>
+          {'By: ' + this.props.users[post.op].name}
+        </a>
         <div className="post_content">{post.content}</div>
         <div className="post_buttons">
           <button>▲</button>
@@ -56,11 +59,6 @@ export default class PostListPage extends Component {
         return res.json();
       })
       .then(this.setPosts.bind(this));
-    fetch('/api/users')
-      .then(function(res) {
-        return res.json();
-      })
-      .then(this.setUsers.bind(this));
   }
 
   render() {
@@ -68,7 +66,7 @@ export default class PostListPage extends Component {
     if(users === null || posts === null) return null;
     return (
       <div className="post_wrapper">
-        <button className="newPost">+</button>
+        <button className="float-button" onClick={() => {this.context.router.push('/new')} }>+</button>
         <ul className="postList">{this.state.posts.map(this.mapPost.bind(this))}</ul>
       </div>
     )

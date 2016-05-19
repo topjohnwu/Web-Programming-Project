@@ -1,0 +1,5 @@
+[
+  { "id": 0 },
+  { "id": 1, "name": "John", "password": "john", "pic": "http://thisismykea2.s3.amazonaws.com/sites/default/files/designs/6995/mr-happy-1310118986.png"},
+  { "id": 2, "name": "Amy", "password": "amy", "pic": "http://i.imgur.com/tSfIYtw.png" }
+]
